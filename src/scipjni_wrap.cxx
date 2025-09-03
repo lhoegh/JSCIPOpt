@@ -2696,6 +2696,54 @@ SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIP_1ORBITOPETYPE_1PACKING_1get(J
 }
 
 
+SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIP_1PARAMSETTING_1DEFAULT_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  SCIP_ParamSetting result;
+
+  (void)jenv;
+  (void)jcls;
+  result = (SCIP_ParamSetting)SCIP_PARAMSETTING_DEFAULT;
+  jresult = (jint)result;
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIP_1PARAMSETTING_1AGGRESSIVE_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  SCIP_ParamSetting result;
+
+  (void)jenv;
+  (void)jcls;
+  result = (SCIP_ParamSetting)SCIP_PARAMSETTING_AGGRESSIVE;
+  jresult = (jint)result;
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIP_1PARAMSETTING_1FAST_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  SCIP_ParamSetting result;
+
+  (void)jenv;
+  (void)jcls;
+  result = (SCIP_ParamSetting)SCIP_PARAMSETTING_FAST;
+  jresult = (jint)result;
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIP_1PARAMSETTING_1OFF_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  SCIP_ParamSetting result;
+
+  (void)jenv;
+  (void)jcls;
+  result = (SCIP_ParamSetting)SCIP_PARAMSETTING_OFF;
+  jresult = (jint)result;
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIP_1PARAMEMPHASIS_1DEFAULT_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   SCIP_ParamEmphasis result;
@@ -4060,6 +4108,42 @@ SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIPsetStringParam(JNIEnv *jenv, j
 }
 
 
+SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIPsetPresolving(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
+  jint jresult = 0 ;
+  SCIP *arg1 = (SCIP *) 0 ;
+  SCIP_PARAMSETTING arg2 ;
+  unsigned int arg3 ;
+  SCIP_RETCODE result;
+
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(SCIP **)&jarg1;
+  arg2 = (SCIP_PARAMSETTING)jarg2;
+  arg3 = (unsigned int)jarg3;
+  result = (SCIP_RETCODE)SCIPsetPresolving(arg1,arg2,arg3);
+  jresult = (jint)result;
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIPsetHeuristics(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
+  jint jresult = 0 ;
+  SCIP *arg1 = (SCIP *) 0 ;
+  SCIP_PARAMSETTING arg2 ;
+  unsigned int arg3 ;
+  SCIP_RETCODE result;
+
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(SCIP **)&jarg1;
+  arg2 = (SCIP_PARAMSETTING)jarg2;
+  arg3 = (unsigned int)jarg3;
+  result = (SCIP_RETCODE)SCIPsetHeuristics(arg1,arg2,arg3);
+  jresult = (jint)result;
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIPsetEmphasis(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jlong jarg3) {
   jint jresult = 0 ;
   SCIP *arg1 = (SCIP *) 0 ;
@@ -4465,6 +4549,58 @@ SWIGEXPORT jstring JNICALL Java_jscip_SCIPJNIJNI_SCIPconsGetName(JNIEnv *jenv, j
   arg1 = *(SCIP_CONS **)&jarg1; 
   result = (char *)SCIPconsGetName(arg1);
   if (result) jresult = jenv->NewStringUTF((const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_jscip_SCIPJNIJNI_SCIPgetDualSolVal(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3, jlong jarg4) {
+  jint jresult = 0 ;
+  SCIP *arg1 = (SCIP *) 0 ;
+  SCIP_CONS *arg2 = (SCIP_CONS *) 0 ;
+  double *arg3 = (double *) 0 ;
+  unsigned int *arg4 = (unsigned int *) 0 ;
+  SCIP_RETCODE result;
+
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(SCIP **)&jarg1;
+  arg2 = *(SCIP_CONS **)&jarg2;
+  arg3 = *(double **)&jarg3;
+  arg4 = *(unsigned int **)&jarg4;
+  result = (SCIP_RETCODE)SCIPgetDualSolVal(arg1,arg2,arg3,arg4);
+  jresult = (jint)result;
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_jscip_SCIPJNIJNI_SCIPgetDualsolLinear(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+  jdouble jresult = 0 ;
+  SCIP *arg1 = (SCIP *) 0 ;
+  SCIP_CONS *arg2 = (SCIP_CONS *) 0 ;
+  double result;
+
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(SCIP **)&jarg1;
+  arg2 = *(SCIP_CONS **)&jarg2;
+  result = (double)SCIPgetDualsolLinear(arg1,arg2);
+  jresult = (jdouble)result;
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_jscip_SCIPJNIJNI_SCIPgetDualfarkasLinear(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+  jdouble jresult = 0 ;
+  SCIP *arg1 = (SCIP *) 0 ;
+  SCIP_CONS *arg2 = (SCIP_CONS *) 0 ;
+  double result;
+
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(SCIP **)&jarg1;
+  arg2 = *(SCIP_CONS **)&jarg2;
+  result = (double)SCIPgetDualfarkasLinear(arg1,arg2);
+  jresult = (jdouble)result;
   return jresult;
 }
 
