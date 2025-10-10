@@ -262,7 +262,12 @@
    {
       SCIP_CONS* cons;
 
+#if SCIP_VERSION_MAJOR < 10
       SCIP_CALL_ABORT( SCIPcreateConsBasicPseudoboolean(scip, &cons, name, linvars, nlinvars, linvals, terms, nterms, ntermvars, termvals, indvar, weight, issoftcons, intvar, lhs, rhs) );
+#else
+      assert(intvar == NULL);
+      SCIP_CALL_ABORT( SCIPcreateConsBasicPseudoboolean(scip, &cons, name, linvars, nlinvars, linvals, terms, nterms, ntermvars, termvals, indvar, weight, issoftcons, lhs, rhs) );
+#endif
 
       return cons;
    }
