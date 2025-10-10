@@ -468,7 +468,11 @@
    {
       SCIP_CONS* cons;
 
+#if SCIP_VERSION_MAJOR < 10
       SCIP_CALL_ABORT( SCIPcreateConsBasicOrbitope(scip, &cons, name, vars, orbitopetype, nspcons, nblocks, usedynamicprop, resolveprop, ismodelcons, mayinteract) );
+#else
+      SCIP_CALL_ABORT( SCIPcreateConsBasicOrbitope(scip, &cons, name, vars, orbitopetype, nspcons, nblocks, resolveprop, ismodelcons, FALSE) );
+#endif
 
       return cons;
    }
